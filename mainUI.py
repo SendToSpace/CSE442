@@ -6,7 +6,7 @@ import Enemies
 import weapon
 
 TIMER = pygame.USEREVENT + 5
-
+finish_clock = pygame.time.Clock()
 class Button(object):
     def button(text, x, y, width, height, inactive_color, active_color, action=None):
         cur = pygame.mouse.get_pos()
@@ -368,8 +368,8 @@ class main(object):
 
         # reset game
         self.hero.set_position()
-        self.game_score = 0
-        self.level = 1
+        self.game_score = 294823
+        self.level = 10
 
         # reset weapon
         weapon.Weapon.weapon_choice = 0
@@ -441,7 +441,7 @@ class main(object):
             refresh_flag = True
 
     def __level(self):
-        level = 0
+        level = 1
         if self.game_score < 100:
             level = 1
         elif 100 <= self.game_score < 200:
@@ -489,9 +489,9 @@ class main(object):
         # default create pawn enemy time 1000ms, will change during the score up
         create_pawn_time = 1000
         # default create office enemy time 5000ms, will change during the score up
-        create_office_time = 5000
+        create_office_time = 100000
         # default create office enemy time 5000ms, will change during the score up
-        create_mid_boss_time = 10000
+        create_mid_boss_time = 1000000
 
         # hero shoot time
         hero_shoot_fre = weapon.weapon_frequency[weapon.Weapon.weapon_choice]
@@ -532,8 +532,7 @@ class main(object):
         game_loop = True  # ;This the the loop of the main game, FALSE to exit the loop
         while game_loop:
             self.__event_handler()
-
-
+            finish_clock.tick_busy_loop()
             # init sprites_group
             # ####Add Keyboard press detection##### #
             k_press = pygame.key.get_pressed()

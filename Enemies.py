@@ -109,7 +109,7 @@ class Officer(pygame.sprite.Sprite):
         self.survival = True
         self.rect.bottom = 0
         max_x = self.background_rect.width - self.rect.width
-        self.rect.x = random.randint(0, max_x)
+        self.rect.x = random.randint(0,max_x )
 
 
 class Mid_boss(pygame.sprite.Sprite):
@@ -156,8 +156,9 @@ class Mid_boss(pygame.sprite.Sprite):
 
     def move(self):
         self.rect.y += self.speed
-        if self.rect.y >= self.background_rect.height:
-            self.kill()
+        if self.rect.y >= self.background_rect.height or self.rect.y<-300:
+            self.speed*=-1
+        
 
     def set_position(self):
         self.survival = True
